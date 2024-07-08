@@ -1,0 +1,14 @@
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 62px;
+  color: var(--white);
+  background-color: var(--color-success-700);
+  box-shadow: 0 4px 10px #0000004d;
+
+  span{
+    color: white;
+  }
+}

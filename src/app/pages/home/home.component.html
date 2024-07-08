@@ -1,0 +1,103 @@
+<div class="content-home">
+  <div class="wrapper-input">
+    <input type="text" (keydown)="handleKey($event)" [(ngModel)]="novoCard">
+    <button (click)="addBacklog()"><span class="material-icons ">add</span> add</button>
+  </div>
+  <!-- <app-card ></app-card> -->
+  <div class="wrapper-list">
+    <div class="example-container">
+      <h2>Backlog</h2>
+
+      <div
+        cdkDropList
+        #backlogList="cdkDropList"
+        [cdkDropListData]="backlog"
+        [cdkDropListConnectedTo]="[analiseList, desenvolvimentoList, testeList, feitoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of backlog; track $index) {
+          <div class="example-box" cdkDrag>
+            <p>{{item}}</p>
+            <span class="material-icons" (click)="deleteItem(item, $event)">close</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Análise</h2>
+
+      <div
+        cdkDropList
+        #analiseList="cdkDropList"
+        [cdkDropListData]="analise"
+        [cdkDropListConnectedTo]="[backlogList, desenvolvimentoList, testeList, feitoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of analise; track $index) {
+          <div class="example-box" cdkDrag>
+            <p>{{item}}</p>
+            <span class="material-icons" (click)="deleteItem(item, $event)">close</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Desenvolvimento</h2>
+
+      <div
+        cdkDropList
+        #desenvolvimentoList="cdkDropList"
+        [cdkDropListData]="desenvolvimento"
+        [cdkDropListConnectedTo]="[backlogList, analiseList, testeList, feitoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of desenvolvimento; track $index) {
+          <div class="example-box" cdkDrag>
+            <p>{{item}}</p>
+            <span class="material-icons" (click)="deleteItem(item, $event)">close</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Teste</h2>
+
+      <div
+        cdkDropList
+        #testeList="cdkDropList"
+        [cdkDropListData]="teste"
+        [cdkDropListConnectedTo]="[backlogList, analiseList, desenvolvimentoList, feitoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of teste; track $index) {
+          <div class="example-box" cdkDrag>
+            <p>{{item}}</p>
+            <span class="material-icons" (click)="deleteItem(item, $event)">close</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Feito</h2>
+
+      <div
+        cdkDropList
+        #feitoList="cdkDropList"
+        [cdkDropListData]="feito"
+        [cdkDropListConnectedTo]="[backlogList, analiseList, desenvolvimentoList, testeList, feitoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of feito; track $index) {
+          <div class="example-box" cdkDrag>
+            <p>{{item}}</p>
+            <span class="material-icons" (click)="deleteItem(item, $event)">close</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
