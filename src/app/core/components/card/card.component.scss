@@ -1,9 +1,18 @@
 .container-card{
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  background-color: red;
-  width: 100px;
-  height: 100px;
-  color: var(--white);
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  p{
+    max-width: 200px;
+  }
+  .material-icons{
+    cursor: pointer;
+  }
 }

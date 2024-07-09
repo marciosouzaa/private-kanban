@@ -2,7 +2,12 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { CardComponent } from '../../core/components/card/card.component';
 import {CdkDrag, CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Guid } from '../../core/utils/guid_validator';
 
+interface itemDto {
+  Descricao:string,
+  Id:any,
+};
 
 @Component({
   selector: 'app-home',
@@ -12,13 +17,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  backlog = ['work' ];
-  analise = ['work' ];
-  desenvolvimento = ['work' ];
-  teste = ['work' ];
-  feito = ['work' ];
+  backlog:itemDto[] = [ ];
+  analise = [ ];
+  desenvolvimento = [ ];
+  teste = [ ];
+  feito = [ ];
 
-  novoCard:string = '';
+  novoNomeCard:string = '';
   ngOnInit() {
     if(localStorage.getItem('pk.backlog')){
        var getBacklog:any = localStorage.getItem('pk.backlog');
@@ -42,7 +47,9 @@ export class HomeComponent implements OnInit {
     };
   };
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: any){
+    console.log(event);
+
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -64,9 +71,10 @@ export class HomeComponent implements OnInit {
   };
 
   addBacklog(){
-    if(this.novoCard.length > 0){
-      this.backlog.push(this.novoCard)
-      this.novoCard = '';
+    if(this.novoNomeCard.length > 0){
+      var novoItem = {Descricao: this.novoNomeCard, Id: Guid.generate()}
+      this.backlog.push(novoItem)
+      this.novoNomeCard = '';
     };
   };
 
@@ -76,7 +84,7 @@ export class HomeComponent implements OnInit {
     };
   };
 
-  deleteItem(item:any, e:any){
+  deleteItem = (item:any, e:any)=>{
     var itemFind = this.backlog.find(i => i == item);
     if(itemFind)
       this.backlog = this.backlog.filter(i => i != item);

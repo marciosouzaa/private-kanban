@@ -1,13 +1,12 @@
 <div class="content-home">
   <div class="wrapper-input">
-    <input type="text" (keydown)="handleKey($event)" [(ngModel)]="novoCard">
-    <button (click)="addBacklog()"><span class="material-icons ">add</span> add</button>
+    <input type="text" (keydown)="handleKey($event)" [(ngModel)]="novoNomeCard">
+    <button (click)="addBacklog()"><span class="material-icons ">add</span> Adicionar</button>
   </div>
   <!-- <app-card ></app-card> -->
   <div class="wrapper-list">
     <div class="example-container">
-      <h2>Backlog</h2>
-
+      <h2 class="heading titulo">Backlog</h2>
       <div
         cdkDropList
         #backlogList="cdkDropList"
@@ -16,17 +15,17 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         @for (item of backlog; track $index) {
-          <div class="example-box" cdkDrag>
+          <app-card [item]="item" [deleteItem]="deleteItem" cdkDrag></app-card>
+          <!-- <div class="example-box" cdkDrag>
             <p>{{item}}</p>
             <span class="material-icons" (click)="deleteItem(item, $event)">close</span>
-          </div>
+          </div> -->
         }
       </div>
     </div>
 
     <div class="example-container">
-      <h2>Análise</h2>
-
+      <h2 class="heading titulo">Análise</h2>
       <div
         cdkDropList
         #analiseList="cdkDropList"
@@ -35,17 +34,13 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         @for (item of analise; track $index) {
-          <div class="example-box" cdkDrag>
-            <p>{{item}}</p>
-            <span class="material-icons" (click)="deleteItem(item, $event)">close</span>
-          </div>
+          <app-card [item]="item" [deleteItem]="deleteItem" cdkDrag></app-card>
         }
       </div>
     </div>
 
     <div class="example-container">
-      <h2>Desenvolvimento</h2>
-
+      <h2 class="heading titulo">Desenvolvimento</h2>
       <div
         cdkDropList
         #desenvolvimentoList="cdkDropList"
@@ -54,17 +49,13 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         @for (item of desenvolvimento; track $index) {
-          <div class="example-box" cdkDrag>
-            <p>{{item}}</p>
-            <span class="material-icons" (click)="deleteItem(item, $event)">close</span>
-          </div>
+          <app-card [item]="item" [deleteItem]="deleteItem" cdkDrag></app-card>
         }
       </div>
     </div>
 
     <div class="example-container">
-      <h2>Teste</h2>
-
+      <h2 class="heading titulo">Teste</h2>
       <div
         cdkDropList
         #testeList="cdkDropList"
@@ -73,17 +64,13 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         @for (item of teste; track $index) {
-          <div class="example-box" cdkDrag>
-            <p>{{item}}</p>
-            <span class="material-icons" (click)="deleteItem(item, $event)">close</span>
-          </div>
+          <app-card [item]="item" [deleteItem]="deleteItem" cdkDrag></app-card>
         }
       </div>
     </div>
 
     <div class="example-container">
-      <h2>Feito</h2>
-
+      <h2 class="heading titulo">Feito</h2>
       <div
         cdkDropList
         #feitoList="cdkDropList"
@@ -92,10 +79,7 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         @for (item of feito; track $index) {
-          <div class="example-box" cdkDrag>
-            <p>{{item}}</p>
-            <span class="material-icons" (click)="deleteItem(item, $event)">close</span>
-          </div>
+          <app-card [item]="item" [deleteItem]="deleteItem" cdkDrag></app-card>
         }
       </div>
     </div>
